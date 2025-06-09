@@ -10,10 +10,19 @@ todoForm.addEventListener('submit', function(event) {
     const newTaskText = todoInput.value;
 
     // Create a new list item and set the text for it
+    // Create a checkbox next to each new list item
     const listItem = document.createElement('li');
-    listItem.innerText = newTaskText;
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
 
+    const textSpan = document.createElement('span');
+    textSpan.innerText = newTaskText;
+
+    // Add the check box and text span to the 'listItem'
     // Add the new list item to the to-do list, then clear the text box
+
+    listItem.appendChild(checkbox);
+    listItem.appendChild(textSpan);
     todoList.appendChild(listItem);
     todoInput.value = '';
 });
