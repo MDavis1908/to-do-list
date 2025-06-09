@@ -42,7 +42,8 @@ todoList.addEventListener('change', function(event){
 })
 
 todoList.addEventListener('click', function(event) {
-    if (event.target.classList === this.classList.contains('delete-btn'));
+    if (event.target.classList.contains('delete-btn')){
     const listItem = event.target.parentElement;
     this.removeChild(listItem);
+    }
 })
