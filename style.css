@@ -30,6 +30,16 @@ div {
 #todo-form button:hover {
     background-color: rgb(1, 109, 109);
 }
-#todo-list {
+#todo-list li {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
     color: white;
+}
+#todo-list li input[type="checkbox"] {
+    margin-right: 12px;
+}
+.completed span {
+    text-decoration: line-through;
+    color: #888;
 }
