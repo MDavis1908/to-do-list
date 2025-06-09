@@ -30,7 +30,6 @@ todoForm.addEventListener('submit', function(event) {
 todoList.addEventListener('change', function(event){
     if (event.target.type === 'checkbox'){
         const listItem = event.target.parentElement;
-        this.classList.toggle('completed');
+        listItem.classList.toggle('completed');
     }
-
 })
