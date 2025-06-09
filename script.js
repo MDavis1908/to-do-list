@@ -15,14 +15,21 @@ todoForm.addEventListener('submit', function(event) {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
 
+    // Create a span to hold the text for each entry
     const textSpan = document.createElement('span');
     textSpan.innerText = newTaskText;
+
+    // Create a delete button to remove an entry
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('delete-btn');
+    deleteButton.innerHTML = '&times;';
 
     // Add the check box and text span to the 'listItem'
     // Add the new list item to the to-do list, then clear the text box
 
     listItem.appendChild(checkbox);
     listItem.appendChild(textSpan);
+    listItem.appendChild(deleteButton);
     todoList.appendChild(listItem);
     todoInput.value = '';
 });
@@ -32,4 +39,10 @@ todoList.addEventListener('change', function(event){
         const listItem = event.target.parentElement;
         listItem.classList.toggle('completed');
     }
+})
+
+todoList.addEventListener('click', function(event) {
+    if (event.target.classList === this.classList.contains('delete-btn'));
+    const listItem = event.target.parentElement;
+    this.removeChild(listItem);
 })

@@ -43,3 +43,14 @@ div {
     text-decoration: line-through;
     color: #888;
 }
+.delete-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 22px;
+    cursor: pointer;
+    margin-left: auto;
+}
+.delete-btn:hover {
+    color: firebrick;
+}
