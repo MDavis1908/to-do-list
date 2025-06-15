@@ -16,7 +16,6 @@ function createTaskElement(task) {
 
     if (task.completed) {
         listItem.classList.add('completed');
-        return listItem;
     }
 
     // Create a delete button to remove an entry
@@ -32,6 +31,7 @@ function createTaskElement(task) {
     listItem.appendChild(deleteButton);
     todoList.appendChild(listItem);
     todoInput.value = '';
+    return listItem;
 }
 
 function saveTasks() {
@@ -56,7 +56,7 @@ function loadTasks() {
     const savedTasks = localStorage.getItem('tasks');
     if (savedTasks != null) {
         const tasks = JSON.parse(savedTasks);
-        tasks.forEach(function(){
+        tasks.forEach(function(task){
             const newElement = createTaskElement(task);
             todoList.appendChild(newElement);
 
@@ -69,15 +69,15 @@ todoForm.addEventListener('submit', function(event) {
     // Stops the page from reloading
     event.preventDefault();
 
+    // Get the user's text input
+    const newTaskText = todoInput.value;
+
     const taskObject = {
         text: newTaskText,
         completed: false
     };
     const newElement = createTaskElement(taskObject);
     todoList.appendChild(newElement);
-
-    // Get the user's text input
-    const newTaskText = todoInput.value;
 });
 
 todoList.addEventListener('change', function(event){
