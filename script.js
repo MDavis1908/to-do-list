@@ -78,6 +78,7 @@ todoForm.addEventListener('submit', function(event) {
     };
     const newElement = createTaskElement(taskObject);
     todoList.appendChild(newElement);
+    saveTasks();
 });
 
 todoList.addEventListener('change', function(event){
@@ -85,6 +86,7 @@ todoList.addEventListener('change', function(event){
         const listItem = event.target.parentElement;
         listItem.classList.toggle('completed');
     }
+    saveTasks();
 })
 
 todoList.addEventListener('click', function(event) {
@@ -92,6 +94,7 @@ todoList.addEventListener('click', function(event) {
     const listItem = event.target.parentElement;
     this.removeChild(listItem);
     }
+    saveTasks();
 })
 
 loadTasks();
