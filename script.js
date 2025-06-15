@@ -12,7 +12,12 @@ function createTaskElement(task) {
 
     // Create a span to hold the text for each entry
     const textSpan = document.createElement('span');
-    textSpan.innerText = newTaskText;
+    textSpan.innerText = task.text;
+
+    if (task.completed) {
+        listItem.classList.add('completed');
+        return listItem;
+    }
 
     // Create a delete button to remove an entry
     const deleteButton = document.createElement('button');
@@ -51,7 +56,11 @@ function loadTasks() {
     const savedTasks = localStorage.getItem('tasks');
     if (savedTasks != null) {
         const tasks = JSON.parse(savedTasks);
-        console.log(tasks);
+        tasks.forEach(function(){
+            const newElement = createTaskElement(task);
+            todoList.appendChild(newElement);
+
+        })
     }
 
 }
@@ -59,6 +68,13 @@ function loadTasks() {
 todoForm.addEventListener('submit', function(event) {
     // Stops the page from reloading
     event.preventDefault();
+
+    const taskObject = {
+        text: newTaskText,
+        completed: false
+    };
+    const newElement = createTaskElement(taskObject);
+    todoList.appendChild(newElement);
 
     // Get the user's text input
     const newTaskText = todoInput.value;
@@ -77,3 +93,5 @@ todoList.addEventListener('click', function(event) {
     this.removeChild(listItem);
     }
 })
+
+loadTasks();
