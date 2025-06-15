@@ -2,6 +2,24 @@ const todoForm = document.getElementById('todo-form');
 const todoInput = document.getElementById('todo-input');
 const todoList = document.getElementById('todo-list');
 
+function saveTasks() {
+    // Create variable to hold an array of taskObjects.
+    const tasks = [];
+    const listItems = document.querySelectorAll('#todo-list li');
+    // For Each loop iterates through all 'li' elements turning them into objects
+    listItems.forEach(function(li) {
+        const textSpan = li.querySelector('span');
+        const taskText = textSpan.innerText;
+        const isCompleted = li.classList.contains('completed');
+        const taskObject = {
+            text: taskText,
+            completed: isCompleted
+        };
+        tasks.push(taskObject);
+    });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
 todoForm.addEventListener('submit', function(event) {
     // Stops the page from reloading
     event.preventDefault();
