@@ -2,31 +2,8 @@ const todoForm = document.getElementById('todo-form');
 const todoInput = document.getElementById('todo-input');
 const todoList = document.getElementById('todo-list');
 
-function saveTasks() {
-    // Create variable to hold an array of taskObjects.
-    const tasks = [];
-    const listItems = document.querySelectorAll('#todo-list li');
-    // For Each loop iterates through all 'li' elements turning them into objects
-    listItems.forEach(function(li) {
-        const textSpan = li.querySelector('span');
-        const taskText = textSpan.innerText;
-        const isCompleted = li.classList.contains('completed');
-        const taskObject = {
-            text: taskText,
-            completed: isCompleted
-        };
-        tasks.push(taskObject);
-    });
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-}
 
-todoForm.addEventListener('submit', function(event) {
-    // Stops the page from reloading
-    event.preventDefault();
-
-    // Get the user's text input
-    const newTaskText = todoInput.value;
-
+function createTaskElement(task) {
     // Create a new list item and set the text for it
     // Create a checkbox next to each new list item
     const listItem = document.createElement('li');
@@ -50,6 +27,41 @@ todoForm.addEventListener('submit', function(event) {
     listItem.appendChild(deleteButton);
     todoList.appendChild(listItem);
     todoInput.value = '';
+}
+
+function saveTasks() {
+    // Create variable to hold an array of taskObjects.
+    const tasks = [];
+    const listItems = document.querySelectorAll('#todo-list li');
+    // For Each loop iterates through all 'li' elements turning them into objects
+    listItems.forEach(function(li) {
+        const textSpan = li.querySelector('span');
+        const taskText = textSpan.innerText;
+        const isCompleted = li.classList.contains('completed');
+        const taskObject = {
+            text: taskText,
+            completed: isCompleted
+        };
+        tasks.push(taskObject);
+    });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function loadTasks() {
+    const savedTasks = localStorage.getItem('tasks');
+    if (savedTasks != null) {
+        const tasks = JSON.parse(savedTasks);
+        console.log(tasks);
+    }
+
+}
+
+todoForm.addEventListener('submit', function(event) {
+    // Stops the page from reloading
+    event.preventDefault();
+
+    // Get the user's text input
+    const newTaskText = todoInput.value;
 });
 
 todoList.addEventListener('change', function(event){
